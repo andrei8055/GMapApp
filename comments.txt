@@ -1,0 +1,22 @@
+    var runningParticipants = new Array(); // participants markers that are on the map
+	var numOfRows = 0; // number of rows from the table
+	var checkpointsArray = []; //array containing coordinates of chip checkpoints 
+	var coordinatesArray; //array containing the coordinates of the existing route
+	var markers = [];
+	var distances = []; //array containing the length of each route segment
+	var distance =0;    //total length of route in meters
+	var poly;   //google maps object of type polyline
+	var map; 
+	var isRunning =false; //checks if the markers are moving on the route
+	var tempMarker;
+	var startMarker;    //start marker
+	var endMarker;  //end marker
+	var movementArray = new Array();
+	var pathNo = 0; //Number of subpaths initialized to 0
+	var firstAppend = true; 
+    var heigthArray = new Array();
+	var landmarks = [];     //array of markers that display each kilometer
+    var distancesArray = new Array();
+    var GMapObj = new GMap();   
+    var elevator;   //google map object needed to calculate the heigth at coordinates
+    var infowindow = new google.maps.InfoWindow();
