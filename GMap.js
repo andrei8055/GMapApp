@@ -12,6 +12,7 @@ function GMap() {
     var poly;
     var map;
     var URL = document.URL;
+    var append = 0;
     //var flightPath;
     //var flightPlanCoordinates = new Array();
     var isRunning =false; //checks if the markers are moving on the route
@@ -29,7 +30,7 @@ function GMap() {
     //var points = new Array();
     //var coordinates = new Array();
 
-    var landmarks = [];
+    var landmarks = new Array();
     var distancesArray = new Array();
 
     var elevator;
@@ -45,7 +46,7 @@ function GMap() {
      arr.push(new google.maps.LatLng(57.03512594849537,9.920654296875));
      */
 
-this.initializeResult = function (arr,divID,showBottomMenu)
+this.initializeResult = function (arr,divID,GMapObj,showBottomMenu)
 {
 
     var div = document.getElementById(divID);
@@ -61,7 +62,7 @@ this.initializeResult = function (arr,divID,showBottomMenu)
 
     con += '<div id="buttons">';
 
-        con += '<button id="runRight" onClick="GMapObj.run()">Run</button>';
+    con += '<button id="runRight" onClick="' +GMapObj+ '.run()">Run</button>';
 
     con += '<button id="hide">Hide</button>';
     con += '<button id="show" hidden="true">Show</button>';
@@ -74,13 +75,13 @@ this.initializeResult = function (arr,divID,showBottomMenu)
 
     con += '<div id="timeDiv" class="sub-menu"><form><table> <tr>';
     con += '<td>Time:</td>';
-    con += '<td><input id="hours-time" type="text" name="hour" onkeyup="CalculateSpeed(GMapObj.getDistance())" placeholder="hh" style="width:25px;">:</td>';
-    con += '<td><input id="minutes-time" type="text" name="minutes" onkeyup="CalculateSpeed(GMapObj.getDistance())"  placeholder="mm" style="width:25px;">:</td>';
-    con += '<td><input id="seconds-time" type="text" name="seconds" onkeyup="CalculateSpeed(GMapObj.getDistance())"  placeholder="ss" style="width:25px;"></td>';
+    con += '<td><input id="hours-time" type="text" name="hour" onkeyup="CalculateSpeed('+GMapObj+'.getDistance())" placeholder="hh" style="width:25px;">:</td>';
+    con += '<td><input id="minutes-time" type="text" name="minutes" onkeyup="CalculateSpeed('+GMapObj+'.getDistance())"  placeholder="mm" style="width:25px;">:</td>';
+    con += '<td><input id="seconds-time" type="text" name="seconds" onkeyup="CalculateSpeed('+GMapObj+'.getDistance())"  placeholder="ss" style="width:25px;"></td>';
     con += '</tr> </table></form></div>';
 
     con += '<div id="speedDiv" class="sub-menu"><table> <tr>';
-    con += '<td>Speed: <input readonly="true" value="0" id="speed" type="text" name="speed" style="width:40px; visibility: hidden">km/h</td>';
+    con += '<td>Speed: <input readonly="true" value="0" id="speed" type="text" name="speed" style="width:40px;">km/h</td>';
     con += '</tr>';
     con += '</table>';
     con += '</div>';
@@ -103,11 +104,11 @@ this.initializeResult = function (arr,divID,showBottomMenu)
 
     if(showBottomMenu!=2)
     {
-        con += '<button id="hideStatistics"> Graph </button>';
-        con += '<button id="showStatistics" hidden="true"> Table </button>';
+        con += '<button id="hideStatistics"> Table </button>';
+        con += '<button id="showStatistics" hidden="true"> Graph </button>';
     }
 
-    con += '<button id="runBtn"type="button" onClick="GMapObj.run()">Run</button>';
+    con += '<button id="runBtn"type="button" onClick="'+GMapObj+'.run()">Run</button>';
     con += '</div>';
     con += '<div class="datagrid" id="tableDiv" style="float:center; width: 95%; height: 125px; margin:1px; overflow: scroll; position: absolute; ">';
     con += '<table id="tblDetails" border="1" >';
@@ -134,7 +135,7 @@ this.initializeResult = function (arr,divID,showBottomMenu)
     if(showBottomMenu==1)
     {
 
-        GMapObj.showGraph(true);
+        this.showGraph(true);
     }
     div.innerHTML += con;
 
@@ -855,6 +856,7 @@ this.createMarker = function(point,html,i) {
 
     this.getLandmarks = function(){
         return landmarks;
+
     }
 
     this.getRoad = function(){
@@ -1057,8 +1059,9 @@ this.createMarker = function(point,html,i) {
 //Second Constructor
 
 
-    this.initializeDraw = function (divID,showRightMenu)
+    this.initializeDraw = function (divID,GMapObj,showRightMenu,appendToLink)
     {
+        append = appendToLink;
         var div = document.getElementById(divID);
         var con = '';
         con += ' <input id="pac-input" class="controls" type="hidden" placeholder="Search Box">';
@@ -1080,8 +1083,8 @@ this.createMarker = function(point,html,i) {
         con += '<div class="sub-menu">';
         con += '<div id="distance">Distance: 0 meters</div>';
         con += '<div id="menu-buttons">';
-        con += '<button id="RemoveLastBtn"type="button" onClick="GMapObj.removeLast()">Undo</button>';
-        con += '<button id="RemoveAll"type="button" onClick="GMapObj.removeAll()">Delete</button>';
+        con += '<button id="RemoveLastBtn"type="button" onClick="'+GMapObj+'.removeLast()">Undo</button>';
+        con += '<button id="RemoveAll"type="button" onClick="'+GMapObj+'.removeAll()">Delete</button>';
         con += '</div>'
         con += '</div>';
 
@@ -1093,9 +1096,9 @@ this.createMarker = function(point,html,i) {
         {
             con += '<div class="sub-menu"><form><table> <tr>';
             con += '<td>Time:</td>';
-            con += '<td><input id="hours-time" type="text" name="hour" onkeyup="CalculateSpeed(GMapObj.getDistance())" placeholder="hh" style="width:25px;">:</td>';
-            con += '<td><input id="minutes-time" type="text" name="minutes" onkeyup="CalculateSpeed(GMapObj.getDistance())"  placeholder="mm" style="width:25px;">:</td>';
-            con += '<td><input id="seconds-time" type="text" name="seconds" onkeyup="CalculateSpeed(GMapObj.getDistance())"  placeholder="ss" style="width:25px;"></td>';
+            con += '<td><input id="hours-time" type="text" name="hour" onkeyup="CalculateSpeed('+GMapObj+'.getDistance())" placeholder="hh" style="width:25px;">:</td>';
+            con += '<td><input id="minutes-time" type="text" name="minutes" onkeyup="CalculateSpeed('+GMapObj+'.getDistance())"  placeholder="mm" style="width:25px;">:</td>';
+            con += '<td><input id="seconds-time" type="text" name="seconds" onkeyup="CalculateSpeed('+GMapObj+'.getDistance())"  placeholder="ss" style="width:25px;"></td>';
             con += '</tr> </table></form></div>';
             con += '<div class="sub-menu"><table> <tr>';
             con += '<td>Speed: <input readonly="true" value="0" id="speed" type="text" name="speed" style="width:40px;">km/h</td>';
@@ -1245,6 +1248,7 @@ this.createMarker = function(point,html,i) {
         // Add a listener for the click event
 
         google.maps.event.addListener(map, 'click', addLatLng);
+
         loaddata(poly);
         km_on(poly);
 
@@ -1284,19 +1288,20 @@ this.createMarker = function(point,html,i) {
 
         }
 
-
-        if(firstAppend==true)
+        if(append==1)
         {
-            var appendLocation = '?a[lat'+pathNo+']='+event.latLng.lat()+'&a[lng'+pathNo+']='+event.latLng.lng();
-            firstAppend = false;
+            if(firstAppend==true)
+            {
+                var appendLocation = '?a[lat'+pathNo+']='+event.latLng.lat()+'&a[lng'+pathNo+']='+event.latLng.lng();
+                firstAppend = false;
+            }
+            else
+                var appendLocation = '&a[lat'+pathNo+']='+event.latLng.lat()+'&a[lng'+pathNo+']='+event.latLng.lng();
+
+            urllocations.push(appendLocation);
+            var curentUrl = document.URL + appendLocation;
+            window.history.pushState('object or string', 'Title', curentUrl);
         }
-        else
-            var appendLocation = '&a[lat'+pathNo+']='+event.latLng.lat()+'&a[lng'+pathNo+']='+event.latLng.lng();
-
-        urllocations.push(appendLocation);
-        var curentUrl = document.URL + appendLocation;
-        window.history.pushState('object or string', 'Title', curentUrl);
-
         // Because path is an MVCArray, we can simply append a new coordinate
         // and it will automatically appear.
 
@@ -1357,6 +1362,8 @@ this.createMarker = function(point,html,i) {
             markers[i].setMap(null);
         }
 
+        coordinatesArray = new Array();
+
         var i=poly.getPath().getLength();
         while(i>0)
         {
@@ -1389,8 +1396,10 @@ this.createMarker = function(point,html,i) {
             markers[markers.length-1].setMap(null);
             markers[markers.length-2].setMap(map);
 
+
             markers.pop();
             poly.getPath().pop();
+            coordinatesArray.pop();
 
             distance -= distances[distances.length-1];
             distance = Math.floor(distance);
