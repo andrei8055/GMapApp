@@ -46,8 +46,19 @@ function GMap() {
      arr.push(new google.maps.LatLng(57.03512594849537,9.920654296875));
      */
 
-this.initializeResult = function (arr,divID,GMapObj,showBottomMenu)
+    getName = function (param)
+    {
+        for (var name in window)
+            if (window[name] == param)
+                return name;
+    };
+
+
+this.initializeResult = function (arr,divID,showBottomMenu)
 {
+
+    var instanceName;
+    instanceName = getName(this);
 
     var div = document.getElementById(divID);
     var con = '';
@@ -62,7 +73,7 @@ this.initializeResult = function (arr,divID,GMapObj,showBottomMenu)
 
     con += '<div id="buttons">';
 
-    con += '<button id="runRight" onClick="' +GMapObj+ '.run()">Run</button>';
+    con += '<button id="runRight" onClick="' +instanceName+ '.run()">Run</button>';
 
     con += '<button id="hide">Hide</button>';
     con += '<button id="show" hidden="true">Show</button>';
@@ -75,9 +86,9 @@ this.initializeResult = function (arr,divID,GMapObj,showBottomMenu)
 
     con += '<div id="timeDiv" class="sub-menu"><form><table> <tr>';
     con += '<td>Time:</td>';
-    con += '<td><input id="hours-time" type="text" name="hour" onkeyup="CalculateSpeed('+GMapObj+'.getDistance())" placeholder="hh" style="width:25px;">:</td>';
-    con += '<td><input id="minutes-time" type="text" name="minutes" onkeyup="CalculateSpeed('+GMapObj+'.getDistance())"  placeholder="mm" style="width:25px;">:</td>';
-    con += '<td><input id="seconds-time" type="text" name="seconds" onkeyup="CalculateSpeed('+GMapObj+'.getDistance())"  placeholder="ss" style="width:25px;"></td>';
+    con += '<td><input id="hours-time" type="text" name="hour" onkeyup="CalculateSpeed('+instanceName+'.getDistance())" placeholder="hh" style="width:25px;">:</td>';
+    con += '<td><input id="minutes-time" type="text" name="minutes" onkeyup="CalculateSpeed('+instanceName+'.getDistance())"  placeholder="mm" style="width:25px;">:</td>';
+    con += '<td><input id="seconds-time" type="text" name="seconds" onkeyup="CalculateSpeed('+instanceName+'.getDistance())"  placeholder="ss" style="width:25px;"></td>';
     con += '</tr> </table></form></div>';
 
     con += '<div id="speedDiv" class="sub-menu"><table> <tr>';
@@ -1059,8 +1070,13 @@ this.createMarker = function(point,html,i) {
 //Second Constructor
 
 
-    this.initializeDraw = function (divID,GMapObj,showRightMenu,appendToLink)
+    this.initializeDraw = function (divID,showRightMenu,appendToLink)
     {
+
+        var instanceName;
+        instanceName = getName(this);
+
+
         append = appendToLink;
         var div = document.getElementById(divID);
         var con = '';
@@ -1083,8 +1099,8 @@ this.createMarker = function(point,html,i) {
         con += '<div class="sub-menu">';
         con += '<div id="distance">Distance: 0 meters</div>';
         con += '<div id="menu-buttons">';
-        con += '<button id="RemoveLastBtn"type="button" onClick="'+GMapObj+'.removeLast()">Undo</button>';
-        con += '<button id="RemoveAll"type="button" onClick="'+GMapObj+'.removeAll()">Delete</button>';
+        con += '<button id="RemoveLastBtn"type="button" onClick="'+instanceName+'.removeLast()">Undo</button>';
+        con += '<button id="RemoveAll"type="button" onClick="'+instanceName+'.removeAll()">Delete</button>';
         con += '</div>'
         con += '</div>';
 
@@ -1096,9 +1112,9 @@ this.createMarker = function(point,html,i) {
         {
             con += '<div class="sub-menu"><form><table> <tr>';
             con += '<td>Time:</td>';
-            con += '<td><input id="hours-time" type="text" name="hour" onkeyup="CalculateSpeed('+GMapObj+'.getDistance())" placeholder="hh" style="width:25px;">:</td>';
-            con += '<td><input id="minutes-time" type="text" name="minutes" onkeyup="CalculateSpeed('+GMapObj+'.getDistance())"  placeholder="mm" style="width:25px;">:</td>';
-            con += '<td><input id="seconds-time" type="text" name="seconds" onkeyup="CalculateSpeed('+GMapObj+'.getDistance())"  placeholder="ss" style="width:25px;"></td>';
+            con += '<td><input id="hours-time" type="text" name="hour" onkeyup="CalculateSpeed('+instanceName+'.getDistance())" placeholder="hh" style="width:25px;">:</td>';
+            con += '<td><input id="minutes-time" type="text" name="minutes" onkeyup="CalculateSpeed('+instanceName+'.getDistance())"  placeholder="mm" style="width:25px;">:</td>';
+            con += '<td><input id="seconds-time" type="text" name="seconds" onkeyup="CalculateSpeed('+instanceName+'.getDistance())"  placeholder="ss" style="width:25px;"></td>';
             con += '</tr> </table></form></div>';
             con += '<div class="sub-menu"><table> <tr>';
             con += '<td>Speed: <input readonly="true" value="0" id="speed" type="text" name="speed" style="width:40px;">km/h</td>';

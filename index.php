@@ -47,12 +47,12 @@
 		jQuery(function ($){
 
 
-           // GMapObj.initializeDraw("main","GMapObj",1,0);
-           // GMapObj.showKmMarks(true,2000);
+        //    GMapObj.initializeDraw("main",1,0);
+        //    GMapObj.showKmMarks(true,2000);
 
 
 
-             GMapObj.initializeResult(arr,"main","GMapObj",1);
+             GMapObj.initializeResult(arr,"main",1);
              GMapObj.showKmMarks(true);
 
              GMapObj.addParticipant('michael', A1,'blue',true);
