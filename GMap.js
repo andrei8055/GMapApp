@@ -100,7 +100,7 @@ this.initializeResult = function (arr,divID,showBottomMenu)
 
     con += '</div>';
 
-
+    //feature 1 second commit
 
     if(showBottomMenu==0)
     {
