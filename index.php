@@ -156,8 +156,6 @@
 
   <body>
 
-
-
          <div id="main" style="width: 750px;height: 700px; position: relative;"></div>
          <button type="button" onClick="alert('Returns 2D array of latitude and longitude of route coordinates \n' +GMapObj.getCoordinates())">getCoordinates</button>
          <button type="button" onClick="alert('Returns length of route in meters \n' + GMapObj.getDistance())">getDistance</button>
