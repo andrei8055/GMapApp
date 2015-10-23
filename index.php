@@ -15,7 +15,6 @@
     <script src="http://code.highcharts.com/highcharts.js"></script>
     <script src="http://code.highcharts.com/modules/exporting.js"></script>
 
-
       <script>
 
     var GMapObj = new GMap();
@@ -156,8 +155,6 @@
 
 
   <body>
-
-
 
          <div id="main" style="width: 750px;height: 700px; position: relative;"></div>
          <button type="button" onClick="alert('Returns 2D array of latitude and longitude of route coordinates \n' +GMapObj.getCoordinates())">getCoordinates</button>
