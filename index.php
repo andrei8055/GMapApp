@@ -50,8 +50,6 @@
         //    GMapObj.initializeDraw("main",1,0);
         //    GMapObj.showKmMarks(true,2000);
 
-
-
              GMapObj.initializeResult(arr,"main",1);
              GMapObj.showKmMarks(true);
 
@@ -62,8 +60,6 @@
              GMapObj.showSearchMenu();
              GMapObj.showSideMenu();
              //GMapObj.hideTimeSpeed();
-
-
 
 
 		});

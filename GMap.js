@@ -27,7 +27,6 @@ function GMap() {
     var pathNo = 0; //Number of subpaths initialized to 0
     var firstAppend = true;
     //var mArray = [];
-    //var points = new Array();
     //var coordinates = new Array();
 
     var landmarks = new Array();
