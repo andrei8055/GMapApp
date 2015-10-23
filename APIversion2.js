@@ -111,6 +111,8 @@ google.maps.Polygon.prototype.GetPointAtDistance = function(metres) {
 
 // === A method which returns an array of GLatLngs of points a given interval along the path ===
 /*
+
+Feature 2
 google.maps.Polygon.prototype.GetPointsAtDistance = function(metres) {
   var next = metres;
   var points = [];
