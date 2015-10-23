@@ -34,6 +34,8 @@
     sub.push(57.03101589205835,9.968547821044922);
     arr.push(sub);
 
+    feature 1 added
+
     var sub = new Array();
     sub.push(57.03512594849537,9.920654296875);
     arr.push(sub);
